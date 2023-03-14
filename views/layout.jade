@@ -1,0 +1,12 @@
+doctype html
+html
+  head
+    title= title
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    script(src="/javascripts/cart.js") 
+  body(onload="fetchCart()")
+    header
+      a(href="/products") Products
+      a#cart(href="/cart") Cart
+    div#content
+      block content

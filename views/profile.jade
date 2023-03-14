@@ -1,0 +1,35 @@
+extends layout
+
+block content
+  h1 #{title} page
+  p Change information for #{username}
+
+    form(action="/profile", method="post")
+       
+        p Old password 
+        input(type="password", placeholder="Enter Old  Password", name="oldpassword", required)
+        p New password
+        input(type="password", placeholder="Enter New Password", name="newpassword", required)
+        p Confirm new password
+        input(type="password", placeholder="Confirm New Password", name="newpasswordconfirm", required)
+        br
+        br
+        a(href="/") Go Back  
+        button(type="submit") Change 
+    p= errorMsg
+
+    
+    script.
+        var newpassword = document.getElementById("newpassword")
+        var newpasswordconfirm = document.getElementById("newpasswordconfirm");
+
+        function validatePassword(){
+            if(newpassword.value != newpasswordconfirm.value) {
+                newpasswordconfirm.setCustomValidity("Passwords Don't Match");
+            } else {
+                newpasswordconfirm.setCustomValidity('');
+            }
+        }
+
+        newpassword.onchange = validatePassword;
+        newpasswordconfirm.onkeyup = validatePassword;

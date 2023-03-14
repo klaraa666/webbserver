@@ -1,0 +1,18 @@
+extends layout
+
+block content
+  a(href='/') Go to homepage
+  h1 Products
+  div#products-container
+    for product in products
+      div.product-container
+        img.product-image(src=product.images[product.images.length - 1])
+        div.title-price-container
+          h3= product.title
+          h3 $#{product.price}
+        div
+          button(onclick=`addToCart(${JSON.stringify(product)})`) Add to cart
+    else
+      li sorry, no products!
+  
+  script(src="/javascripts/cart.js") 

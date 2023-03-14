@@ -1,0 +1,41 @@
+extends layout
+
+block content
+  h1 #{title} page
+  p Welcome to #{title} 
+
+    form(method="post", action="/register")
+        p Username  
+
+        input(type="text", placeholder="Enter Username", name="username", required)
+
+        p Email  
+
+        input(type="email", placeholder="Enter email", name="email", required)
+
+        p Password  
+        input(type="password", placeholder="Enter Password",  name="password", required)
+        
+        p Confirm password  
+        input(type="password", placeholder="Confirm Password", name="passwordConf", required)
+        p
+        Button(type="submit") Register
+        p= errorMsg
+
+         p Already have an account?
+        a(href='login') Login
+    
+    script.
+        var password = document.getElementById("password")
+        var confirm_password = document.getElementById("passwordConf");
+
+        function validatePassword(){
+            if(password.value != confirm_password.value) {
+                confirm_password.setCustomValidity("Passwords Don't Match");
+            } else {
+                confirm_password.setCustomValidity('');
+            }
+        }
+
+        password.onchange = validatePassword;
+        confirm_password.onkeyup = validatePassword;
